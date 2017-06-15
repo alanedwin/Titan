@@ -1,0 +1,23 @@
+﻿@model  Titan.Models.Contact
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Forename @Model.Surname</h2>
+
+@if(Model.TaskList == null || @Model.TaskList.Count == 0)
+{
+<p>No ToDo's</p>
+}
+else
+{
+<ul>
+@foreach (var task in Model.TaskList)
+{
+    <li>@task.Title</li>
+}
+</ul>
+}
+<a class="back_button" href="@Request.UrlReferrer"><span><i class="fa fa-arrow-circle-o-left" style="font-size:14px"></i></span> Back</a>
+

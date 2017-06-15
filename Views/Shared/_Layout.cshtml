@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap-superhero.css" type="text/stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*@{
+        var themeName = ViewBag.ThemeName;
+    }
+    @if (String.IsNullOrWhiteSpace(themeName))
+    {
+        themeName = "default";
+    }*@
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            @*<div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("titan", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>*@
+            <div class="navbar-collapse collapse">
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="@Url.Action( "Index","Home")"><span><i class="glyphicon glyphicon-th" style="font-size:14px"></i></span> titan </a>
+
+                    <a class="btn btn-primary" href="@Url.Action("Index", "Contacts")"><span><i class="fa fa-check-square" style="font-size:14px"></i></span> Contacts </a>
+                    <a class="btn btn-primary" href="@Url.Action("Index", "Tasks")"><span><i class="fa fa-check-square" style="font-size:14px"></i></span> Tasks </a>
+
+                    @*<a class="btn btn-primary dropdown-toggle" aria-expanded="false" href="#" data-toggle="dropdown"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span><i class="fa fa-plus-square" style="font-size:12px"></i></span> Add New   </a></li>
+                        <li><a href="#"><span><i class="fa fa-list-ul" style="font-size:12px"></i></span> List</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Get Help</a></li>
+                    </ul>*@
+                </div>
+
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - titan</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

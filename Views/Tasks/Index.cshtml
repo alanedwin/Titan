@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Titan.Models.Task>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tasks</h2>
+
+@if (!Model.Any())
+{
+    <p>We don't have any tasks yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Task</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(task.Title, "Details", "Tasks", new { id = task.Id }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

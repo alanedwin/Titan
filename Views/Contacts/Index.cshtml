@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Titan.Models.Contact>
+@{
+    ViewBag.Title = "Contacts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Contacts</h2>
+
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var contact in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(contact.Forename, "Details", "Contacts", new { id = contact.Id }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+<a class="back_button" href="@Request.UrlReferrer"><span><i class="fa fa-arrow-circle-o-left" style="font-size:14px"></i></span> Back</a>
