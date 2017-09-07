@@ -209,7 +209,7 @@ namespace titan.Controllers
                     //    return View("Info");
                     //}
 
-                    ViewBag.Message = "Check your email '" + user.Email + "' and confirm your account, you must be confirmed "
+                    ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
                         + "before you can log in.";
 
                     return View("Info");
@@ -509,6 +509,33 @@ namespace titan.Controllers
             //await UserManager.SendEmailAsync(userID, subject,
             //   "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+
+#if (DEBUG)
+            SmtpClient smtpClient = new SmtpClient();
+            try
+            {
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("beattie.edwin@gmail.com");
+                message.To.Add(new MailAddress(user.Email));
+                message.Subject = subject;
+                string Body = "Please confirm your email by clicking <a href=\"" + callbackUrl + "\">here</a>";
+                AlternateView plainView = AlternateView.CreateAlternateViewFromString("Sorry you dont support HTML", null, "text/plain");
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString(Body, null, "text/html");
+                message.AlternateViews.Add(plainView);
+                message.AlternateViews.Add(htmlView);
+                //message.Body = Body;
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                smtp.Credentials = new System.Net.NetworkCredential("beattie.edwin@gmail.com", "g1ll1angm");
+                smtp.Port = 465;
+                smtp.EnableSsl = true;
+                smtp.Send(message);
+
+            }
+                catch (Exception ex)
+            {
+
+            }
+#else
             SmtpClient smtpClient = new SmtpClient();
             try
             {
@@ -531,8 +558,13 @@ namespace titan.Controllers
             }
             catch (Exception ex)
             {
-                 
+
             }
+
+#endif
+
+
+
 
             return callbackUrl;
         }

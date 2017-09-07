@@ -23,6 +23,7 @@ namespace titan.Models
     {
         public DbSet <Contact> Contacts { get; set; }
         public DbSet <Titan.Models.Task> Tasks { get; set; }
+        public DbSet <Portal> Portals { get; set; }
 
 
         public ApplicationDbContext()

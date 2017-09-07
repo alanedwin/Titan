@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Titan.Models.Portal>
+@{
+    ViewBag.Title = "Portal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Portals</h2>
+
+@if (!Model.Any())
+{
+    <p>You need to create a portal</p>
+}
+else
+{
+
+    @*var batches = Model
+        .Select((x, i) => new { x, i })
+        .GroupBy(p => (p.i / 3), p => p.x);
+
+    foreach (var row in batches)
+    {
+        <div class="row">
+
+            @foreach (var portal in row)
+            {
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@portal.PortalName</h3>
+                        </div>
+                        <div class="panel-body">
+                            @portal.Description
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>*@
+            }
+
+            @*<div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Panel primary</h3>
+                        </div>
+                        <div class="panel-body">
+                            Panel content
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Panel primary</h3>
+                        </div>
+                        <div class="panel-body">
+                            Panel content
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Panel primary</h3>
+                        </div>
+                        <div class="panel-body">
+                            Panel content
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+            <p><a class="btn btn-primary btn-lg" href="@Url.Action("New", "Portals")"><span>Add New</span></a></p>
+
+
+
+           
+            <a class="back_button" href="@Request.UrlReferrer"><span><i class="fa fa-arrow-circle-o-left" style="font-size:14px"></i></span> Back</a>

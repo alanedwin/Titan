@@ -18,5 +18,8 @@ namespace Titan.Models
         public string Email { get; set; }
 
         public List<Task> TaskList { get; set; }
+        public  List<Portal>  PortalList { get; set; }
+        public System.Security.Principal.IPrincipal AssociatedLogin { get; set; }
+
     }
 }

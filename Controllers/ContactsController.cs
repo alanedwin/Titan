@@ -32,12 +32,9 @@ namespace Titan.Controllers
         [Authorize]
         public ActionResult Index(int? PageIndex, string SortBy)
         {
-            if (!PageIndex.HasValue)
-                PageIndex = 1;
-            if (string.IsNullOrWhiteSpace(SortBy))
-                SortBy = "Name";
-            var Contacts = _context.Contacts;
-            return View(Contacts);
+           
+            //var Contacts = _context.Contacts;
+            return View();
         }
 
         public ActionResult New()
@@ -50,9 +47,12 @@ namespace Titan.Controllers
         public ActionResult Save(Contact contact)
 
         {
-        
+
             if (contact.Id == 0)
-                _context.Contacts.Add(contact);
+            { 
+            contact.AssociatedLogin = User;
+            _context.Contacts.Add(contact);
+           }
             else
 
             {
@@ -60,7 +60,7 @@ namespace Titan.Controllers
                 contactInDb.Forename = contact.Forename;
                
             }
-
+            _context.SaveChanges();
             SmtpClient smtpClient = new SmtpClient();
             try
             {
